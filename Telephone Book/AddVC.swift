@@ -44,7 +44,8 @@ class AddVC: UIViewController {
                 return false
             }
         }
-        
+
+        print("okey")
         return true
     }
     
