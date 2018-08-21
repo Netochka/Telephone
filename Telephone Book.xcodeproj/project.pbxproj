@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CE1603AD2125A40E00E71869 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1603AC2125A40E00E71869 /* TableViewCell.swift */; };
+		CE2B1394212C09E7003DBAE0 /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B1393212C09E7003DBAE0 /* EditVC.swift */; };
+		CE2B1396212C1C06003DBAE0 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B1395212C1C06003DBAE0 /* Contact.swift */; };
+		CE2B1398212C1D0D003DBAE0 /* ContactSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B1397212C1D0D003DBAE0 /* ContactSection.swift */; };
 		CE71601D2127055000622D04 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71601C2127055000622D04 /* AddVC.swift */; };
 		CE72C6B5212599C5004F0600 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72C6B4212599C5004F0600 /* AppDelegate.swift */; };
 		CE72C6B7212599C5004F0600 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72C6B6212599C5004F0600 /* ViewController.swift */; };
@@ -37,6 +40,9 @@
 
 /* Begin PBXFileReference section */
 		CE1603AC2125A40E00E71869 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		CE2B1393212C09E7003DBAE0 /* EditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
+		CE2B1395212C1C06003DBAE0 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		CE2B1397212C1D0D003DBAE0 /* ContactSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSection.swift; sourceTree = "<group>"; };
 		CE71601C2127055000622D04 /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		CE72C6B1212599C5004F0600 /* Telephone Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telephone Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE72C6B4212599C5004F0600 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +109,9 @@
 			children = (
 				CE72C6B4212599C5004F0600 /* AppDelegate.swift */,
 				CE72C6B6212599C5004F0600 /* ViewController.swift */,
+				CE2B1397212C1D0D003DBAE0 /* ContactSection.swift */,
+				CE2B1395212C1C06003DBAE0 /* Contact.swift */,
+				CE2B1393212C09E7003DBAE0 /* EditVC.swift */,
 				CE71601C2127055000622D04 /* AddVC.swift */,
 				CE72C6B8212599C5004F0600 /* Main.storyboard */,
 				CE1603AC2125A40E00E71869 /* TableViewCell.swift */,
@@ -262,6 +271,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2B1398212C1D0D003DBAE0 /* ContactSection.swift in Sources */,
+				CE2B1396212C1C06003DBAE0 /* Contact.swift in Sources */,
+				CE2B1394212C09E7003DBAE0 /* EditVC.swift in Sources */,
 				CE71601D2127055000622D04 /* AddVC.swift in Sources */,
 				CE1603AD2125A40E00E71869 /* TableViewCell.swift in Sources */,
 				CE72C6B7212599C5004F0600 /* ViewController.swift in Sources */,

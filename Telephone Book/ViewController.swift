@@ -10,8 +10,9 @@ import UIKit
 
 
 let identifier = "CellTV"
+let identifierEditVC = "goEdit"
 
-class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, UITableViewDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -23,6 +24,9 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
         setUpContacts()
         setUpSearchBar()
         
@@ -90,6 +94,25 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return alphabet
     }
     
+    // Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == identifierEditVC {
+            var selectedContact: Contact
+            
+            let indexPath = self.tableView.indexPath(for: (sender as! UITableViewCell))
+            guard let indP = indexPath else { return }
+            
+            selectedContact = sections[indP.section].contacts[indP.row]
+            let editVC = segue.destination as! EditVC
+            editVC.name = selectedContact.name
+            editVC.phone = selectedContact.phone
+            
+            if let surname = selectedContact.surname {
+                editVC.surname = surname
+            }
+        }
+    }
+    
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
@@ -113,81 +136,3 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
     }
     
 }
-
-struct Contact: Comparable {
-    
-    let name: String
-    let surname: String?
-    let phone: String
-    
-    // Comparable functions
-    static func < (lhs: Contact, rhs: Contact) -> Bool {
-        var fullNameL = lhs.name.lowercased()
-        var fullNameR = rhs.name.lowercased()
-        
-        if let surname = lhs.surname {
-            fullNameL += surname.lowercased()
-        }
-        
-        if let surname = rhs.surname {
-            fullNameR += surname.lowercased()
-        }
-        
-        return fullNameL < fullNameR
-    }
-    
-    static func == (lhs: Contact, rhs: Contact) -> Bool {
-        var fullNameL = lhs.name
-        var fullNameR = rhs.name
-        
-        if let surname = lhs.surname {
-            fullNameL += surname
-        }
-        
-        if let surname = rhs.surname {
-            fullNameR += surname
-        }
-        
-        return fullNameL == fullNameR
-    }
-}
-
-struct ContactSection: Comparable {
-    
-    var firstLetter: Character
-    var contacts: [Contact]
-    
-    static func group(contacts : [Contact]) -> [ContactSection] {
-        // grouping by contact.name[0]
-        let groups = Dictionary(grouping: contacts) { (contact) in
-        return contact.name.lowercased()[contact.name.index(contact.name.startIndex, offsetBy: 0)]
-    }
-        // for each [firstLetter: [contact]] && sorted
-        var sections = groups.map {(k, v) in
-            return ContactSection(firstLetter: k, contacts: v)
-        }.sorted()
-        
-        // sort in each section
-        for i in 0..<sections.count {
-            sections[i].contacts.sort()
-        }
-        
-        return sections
-    }
-    
-    // Comparable functions
-    static func < (lhs: ContactSection, rhs: ContactSection) -> Bool {
-        let fullNameL = lhs.firstLetter
-        let fullNameR = rhs.firstLetter
-        
-        return fullNameL < fullNameR
-    }
-    
-    static func == (lhs: ContactSection, rhs: ContactSection) -> Bool {
-        let fullNameL = lhs.firstLetter
-        let fullNameR = rhs.firstLetter
-        
-        return fullNameL == fullNameR
-    }
-}
-
