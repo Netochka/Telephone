@@ -8,13 +8,20 @@
 
 import UIKit
 
+protocol CreatebleAndEditable {
+    
+    func add(contact: Contact)
+    
+    func edit(contact: Contact, newName: String, newSurname: String?, newPhone: String)
+}
+
 
 let identifier = "CellTV"
 let identifierEditVC = "goEdit"
+let identifierAddVC = "goAdd"
 
-class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, UITableViewDelegate, CreatebleAndEditable {
 
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak private var searchBar: UISearchBar!
     
@@ -31,7 +38,6 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         setUpSearchBar()
         
         currentContacts = contacts
-        
         sections = ContactSection.group(contacts: currentContacts)
     }
     
@@ -46,6 +52,17 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         contacts.append(Contact(name: "Pitor", surname: "Blub", phone: "123"))
         contacts.append(Contact(name: "Petya", surname: "Bebchik", phone: "123"))
         contacts.append(Contact(name: "Seriy", surname: "Xey", phone: "123"))
+        
+     
+        contacts.append(Contact(name: "Vitya", surname: nil, phone: "3571"))
+        contacts.append(Contact(name: "Vasya", surname: nil, phone: "3571"))
+        contacts.append(Contact(name: "Yoo", surname: nil, phone: "3571"))
+
+        contacts.append(Contact(name: "Z", surname: nil, phone: "3571"))
+        contacts.append(Contact(name: "X", surname: nil, phone: "3571"))
+        contacts.append(Contact(name: "S", surname: nil, phone: "3571"))
+ 
+ 
     }
     
     func setUpSearchBar() {
@@ -82,34 +99,51 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return cell!
     }
     
+    var alphabet:[String]?
+    
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         
         let aScalars = "A".unicodeScalars
         let aCode = aScalars[aScalars.startIndex].value
         
-        let alphabet = (0..<26).map {
+        alphabet = (0..<26).map {
             i in String(UnicodeScalar(aCode + i)!)
         }
        
         return alphabet
     }
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        let findChar = alphabet![index]
+        for i in 0..<sections.count {
+            print(sections[i].firstLetter, findChar)
+            if sections[i].firstLetter == Character(findChar.lowercased()) {
+                return i
+            }
+        }
+        
+        return -1
+    }
     
     // Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == identifierEditVC {
+            
             var selectedContact: Contact
             
             let indexPath = self.tableView.indexPath(for: (sender as! UITableViewCell))
             guard let indP = indexPath else { return }
             
             selectedContact = sections[indP.section].contacts[indP.row]
-            let editVC = segue.destination as! EditVC
-            editVC.name = selectedContact.name
-            editVC.phone = selectedContact.phone
             
-            if let surname = selectedContact.surname {
-                editVC.surname = surname
-            }
+            let addVC = segue.destination as! AddVC
+            addVC.contact = selectedContact
+            addVC.delegate = self
+
+        }
+        else if segue.identifier == identifierAddVC {
+            let addVC = segue.destination as! AddVC
+            addVC.isEdit = false
+            addVC.delegate = self
         }
     }
     
@@ -132,6 +166,22 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         })
         
         sections = ContactSection.group(contacts: currentContacts)
+        tableView.reloadData()
+    }
+    
+    func add(contact: Contact) {
+        contacts.append(contact)
+        
+        sections = ContactSection.group(contacts: contacts)
+        tableView.reloadData()
+    }
+    
+    func edit(contact: Contact, newName: String, newSurname: String?, newPhone: String) {
+        contact.name = newName
+        contact.surname = newSurname
+        contact.phone = newPhone
+        
+        sections = ContactSection.group(contacts: contacts)
         tableView.reloadData()
     }
     

@@ -10,9 +10,9 @@ import UIKit
 
 class Contact: NSObject, Comparable {
     
-    let name: String
-    let surname: String?
-    let phone: String
+    var name: String
+    var surname: String?
+    var phone: String
     
     init(name: String, surname: String?, phone: String) {
         self.name = name
