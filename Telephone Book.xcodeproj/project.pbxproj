@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1603AD2125A40E00E71869 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1603AC2125A40E00E71869 /* TableViewCell.swift */; };
+		CE71601D2127055000622D04 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71601C2127055000622D04 /* AddVC.swift */; };
 		CE72C6B5212599C5004F0600 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72C6B4212599C5004F0600 /* AppDelegate.swift */; };
 		CE72C6B7212599C5004F0600 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72C6B6212599C5004F0600 /* ViewController.swift */; };
 		CE72C6BA212599C5004F0600 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE72C6B8212599C5004F0600 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE1603AC2125A40E00E71869 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		CE71601C2127055000622D04 /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		CE72C6B1212599C5004F0600 /* Telephone Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telephone Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE72C6B4212599C5004F0600 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE72C6B6212599C5004F0600 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +103,9 @@
 			children = (
 				CE72C6B4212599C5004F0600 /* AppDelegate.swift */,
 				CE72C6B6212599C5004F0600 /* ViewController.swift */,
+				CE71601C2127055000622D04 /* AddVC.swift */,
 				CE72C6B8212599C5004F0600 /* Main.storyboard */,
+				CE1603AC2125A40E00E71869 /* TableViewCell.swift */,
 				CE72C6BB212599C6004F0600 /* Assets.xcassets */,
 				CE72C6BD212599C6004F0600 /* LaunchScreen.storyboard */,
 				CE72C6C0212599C6004F0600 /* Info.plist */,
@@ -256,6 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE71601D2127055000622D04 /* AddVC.swift in Sources */,
+				CE1603AD2125A40E00E71869 /* TableViewCell.swift in Sources */,
 				CE72C6B7212599C5004F0600 /* ViewController.swift in Sources */,
 				CE72C6B5212599C5004F0600 /* AppDelegate.swift in Sources */,
 			);
