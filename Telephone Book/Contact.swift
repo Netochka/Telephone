@@ -13,11 +13,13 @@ class Contact: NSObject, Comparable {
     var name: String
     var surname: String?
     var phone: String
+    var image: UIImage?
     
-    init(name: String, surname: String?, phone: String) {
+    init(name: String, surname: String?, phone: String, image: UIImage?) {
         self.name = name
         self.surname = surname
         self.phone = phone
+        self.image = image
     }
     
     // Comparable functions

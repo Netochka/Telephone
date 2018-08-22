@@ -148,13 +148,17 @@
                                     <action selector="cancel" destination="1dv-kp-7Ih" eventType="touchUpInside" id="9mB-5L-htT"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fox" translatesAutoresizingMaskIntoConstraints="NO" id="wwF-Gn-wbL">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wwF-Gn-wbL">
                                 <rect key="frame" x="16" y="93" width="133" height="92"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="133" id="8E1-J8-ixf"/>
                                     <constraint firstAttribute="height" constant="92" id="n5a-Wd-tZi"/>
                                     <constraint firstAttribute="width" constant="133" id="wQF-MN-hs6"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="DLu-dL-DAt" appends="YES" id="YBv-hf-f9Y"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JG4-aE-Vw0">
                                 <rect key="frame" x="157" y="93" width="202" height="31"/>
@@ -189,8 +193,15 @@
                                 <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd0-1y-rDy" userLabel="FIO">
+                                <rect key="frame" x="82" y="139" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a59-OC-8w6" secondAttribute="trailing" constant="16" id="0Jq-bu-ODI"/>
                             <constraint firstItem="JG4-aE-Vw0" firstAttribute="leading" secondItem="wwF-Gn-wbL" secondAttribute="trailing" constant="8" id="17V-Js-EZ0"/>
@@ -212,6 +223,8 @@
                             <constraint firstItem="FKg-aI-h4d" firstAttribute="trailing" secondItem="a59-OC-8w6" secondAttribute="trailing" constant="16" id="dnw-Kc-9WO"/>
                             <constraint firstItem="FKg-aI-h4d" firstAttribute="trailing" secondItem="jtM-LK-ifq" secondAttribute="trailing" constant="16" id="jJn-vQ-yo1"/>
                             <constraint firstItem="jtM-LK-ifq" firstAttribute="leading" secondItem="wwF-Gn-wbL" secondAttribute="trailing" constant="8" id="lIU-mA-1Bf"/>
+                            <constraint firstItem="Pd0-1y-rDy" firstAttribute="centerY" secondItem="wwF-Gn-wbL" secondAttribute="centerY" id="mSw-wQ-boo"/>
+                            <constraint firstItem="Pd0-1y-rDy" firstAttribute="centerX" secondItem="wwF-Gn-wbL" secondAttribute="centerX" id="pU3-Gk-ivd"/>
                             <constraint firstItem="a59-OC-8w6" firstAttribute="top" secondItem="jtM-LK-ifq" secondAttribute="bottom" constant="8" id="qyD-t6-ItF"/>
                             <constraint firstItem="6oo-0L-LQX" firstAttribute="top" secondItem="FKg-aI-h4d" secondAttribute="top" constant="11" id="swh-K8-0My"/>
                             <constraint firstItem="a59-OC-8w6" firstAttribute="leading" secondItem="wwF-Gn-wbL" secondAttribute="trailing" constant="8" id="v2Z-iD-oGD"/>
@@ -220,20 +233,24 @@
                         <viewLayoutGuide key="safeArea" id="FKg-aI-h4d"/>
                     </view>
                     <connections>
+                        <outlet property="fioLabel" destination="Pd0-1y-rDy" id="TRo-1c-HvQ"/>
                         <outlet property="firstNameLabel" destination="JG4-aE-Vw0" id="YV9-y4-DId"/>
+                        <outlet property="imageViewUser" destination="wwF-Gn-wbL" id="Pb5-WN-4oe"/>
                         <outlet property="phoneLabel" destination="a59-OC-8w6" id="0DQ-ow-CBk"/>
                         <outlet property="secondNameLabel" destination="jtM-LK-ifq" id="fB0-WA-xbc"/>
                         <outlet property="wrongLabel" destination="L4X-5b-0Ae" id="5nE-9l-tw9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NO9-QJ-dxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DLu-dL-DAt">
+                    <connections>
+                        <action selector="changePhoto:" destination="1dv-kp-7Ih" id="2yY-CW-AFy"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1158" y="118"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="fox" width="480" height="316"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tO8-35-vvd"/>
     </inferredMetricsTieBreakers>

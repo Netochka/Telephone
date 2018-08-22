@@ -8,14 +8,15 @@
 
 import UIKit
 
-class AddVC: UIViewController {
+class AddVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var firstNameLabel: UITextField!
     @IBOutlet weak var secondNameLabel: UITextField!
     @IBOutlet weak var phoneLabel: UITextField!
     @IBOutlet weak var wrongLabel: UILabel!
+    @IBOutlet weak var imageViewUser: UIImageView!
+    @IBOutlet weak var fioLabel: UILabel!
     
-    //var name, surname, phone: String?
     var contact: Contact?
     var isEdit: Bool = true
     
@@ -24,14 +25,24 @@ class AddVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var fio = ""
         if let name = contact?.name {
             firstNameLabel.text = name
+            fio += String(name.first!)
         }
-        if let surname = contact?.surname {
+        if let surname = contact?.surname, surname != "" {
             secondNameLabel.text = surname
+            fio += String(surname.first!)
         }
         if let phone = contact?.phone {
             phoneLabel.text = phone
+        }
+        if imageViewUser.image == nil {
+            fioLabel.text = fio
+        }
+        if let img = contact?.image {
+            fioLabel.text = ""
+            imageViewUser.image = img
         }
     }
 
@@ -52,38 +63,39 @@ class AddVC: UIViewController {
             }
             if isEdit{
                 if let c = contact {
-                    print("\n\n\ni'm here\n\n\n\n")
-                    delegate?.edit(contact: c, newName: name, newSurname: secondNameLabel.text, newPhone: phone)
+                    if let img = imageViewUser {
+                        delegate?.edit(contact: c, newName: name, newSurname: secondNameLabel.text, newPhone: phone, newImage: img.image)
+                    } else {
+                        delegate?.edit(contact: c, newName: name, newSurname: secondNameLabel.text, newPhone: phone, newImage: nil)
+                    }
                 }
             } else {
-                delegate?.add(contact: Contact(name: name, surname: secondNameLabel.text, phone: phone))
+                if let img = imageViewUser {
+                    delegate?.add(contact: Contact(name: name, surname: secondNameLabel.text, phone: phone, image: img.image))
+                } else {
+                    delegate?.add(contact: Contact(name: name, surname: secondNameLabel.text, phone: phone, image: nil))
+                }
             }
             dismiss(animated: true)
         }
     }
-    
-/*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "doDone"
-        {
-            print("doDone")
-            let mainVC = segue.destination as! ViewController
-            if let name = firstNameLabel.text, let phone = phoneLabel.text {
-                mainVC.contacts.append(Contact(name: name, surname: secondNameLabel.text, phone: phone))
-            }
-        }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "doDone", let name = firstNameLabel.text, let phone = phoneLabel.text {
-            if phone.isEmpty || name.isEmpty {
-                wrongLabel.text = "You must enter name and phone"
-                return false
-            }
-        }
 
-        return true
+    @IBAction func changePhoto(_ sender: UITapGestureRecognizer) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
     }
- 
- */
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageViewUser.image = selectedPhoto
+        fioLabel.text = ""
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

@@ -12,7 +12,7 @@ protocol CreatebleAndEditable {
     
     func add(contact: Contact)
     
-    func edit(contact: Contact, newName: String, newSurname: String?, newPhone: String)
+    func edit(contact: Contact, newName: String, newSurname: String?, newPhone: String, newImage: UIImage?)
 }
 
 
@@ -43,24 +43,24 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
     
     private func setUpContacts() {
         
-        contacts.append(Contact(name: "Sanyk", surname: nil, phone: "123"))
+        contacts.append(Contact(name: "Sanyk", surname: nil, phone: "123", image: nil))
         
-        contacts.append(Contact(name: "Anya", surname: "Nosach", phone: "123"))
-        contacts.append(Contact(name: "Alina", surname: "Grosu", phone: "123"))
-        contacts.append(Contact(name: "Olya", surname: "Beb", phone: "123"))
+        contacts.append(Contact(name: "Anya", surname: "Nosach", phone: "123", image: nil))
+        contacts.append(Contact(name: "Alina", surname: "Grosu", phone: "123", image: nil))
+        contacts.append(Contact(name: "Olya", surname: "Beb", phone: "123", image: nil))
         
-        contacts.append(Contact(name: "Pitor", surname: "Blub", phone: "123"))
-        contacts.append(Contact(name: "Petya", surname: "Bebchik", phone: "123"))
-        contacts.append(Contact(name: "Seriy", surname: "Xey", phone: "123"))
+        contacts.append(Contact(name: "Pitor", surname: "Blub", phone: "123", image: nil))
+        contacts.append(Contact(name: "Petya", surname: "Bebchik", phone: "123", image: nil))
+        contacts.append(Contact(name: "Seriy", surname: "Xey", phone: "123", image: nil))
         
      
-        contacts.append(Contact(name: "Vitya", surname: nil, phone: "3571"))
-        contacts.append(Contact(name: "Vasya", surname: nil, phone: "3571"))
-        contacts.append(Contact(name: "Yoo", surname: nil, phone: "3571"))
+        contacts.append(Contact(name: "Vitya", surname: nil, phone: "3571", image: nil))
+        contacts.append(Contact(name: "Vasya", surname: nil, phone: "3571", image: nil))
+        contacts.append(Contact(name: "Yoo", surname: nil, phone: "3571", image: nil))
 
-        contacts.append(Contact(name: "Z", surname: nil, phone: "3571"))
-        contacts.append(Contact(name: "X", surname: nil, phone: "3571"))
-        contacts.append(Contact(name: "S", surname: nil, phone: "3571"))
+        contacts.append(Contact(name: "Z", surname: nil, phone: "3571", image: nil))
+        contacts.append(Contact(name: "X", surname: nil, phone: "3571", image: nil))
+        contacts.append(Contact(name: "S", surname: nil, phone: "3571", image: nil))
  
  
     }
@@ -176,10 +176,11 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         tableView.reloadData()
     }
     
-    func edit(contact: Contact, newName: String, newSurname: String?, newPhone: String) {
+    func edit(contact: Contact, newName: String, newSurname: String?, newPhone: String, newImage: UIImage?) {
         contact.name = newName
         contact.surname = newSurname
         contact.phone = newPhone
+        contact.image = newImage
         
         sections = ContactSection.group(contacts: contacts)
         tableView.reloadData()
