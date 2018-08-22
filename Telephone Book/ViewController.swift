@@ -99,6 +99,10 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     var alphabet:[String]?
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
