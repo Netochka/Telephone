@@ -61,7 +61,8 @@ class AddVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCont
     }
     
     @IBAction func cancel() {
-        dismiss(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
+        //dismiss(animated: true)
     }
     
     @IBAction func done() {
@@ -80,6 +81,7 @@ class AddVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCont
             //dismiss(animated: true)
             self.navigationController?.popToRootViewController(animated: true)
         }
+        //performSegue(withIdentifier: "unwindToVC", sender: self)
     }
     
     /*

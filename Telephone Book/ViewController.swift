@@ -41,6 +41,12 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         sections = ContactSection.group(contacts: currentContacts)
     }
     
+    /*
+    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+        (segue.source as? AddVC)?.contact
+    }
+    */
+    
     private func setUpContacts() {
         
         contacts.append(Contact(name: "Sanyk", surname: nil, phone: "123", image: nil))
